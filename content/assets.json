@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "instructions": "expectedPath is a requested future destination, not an existing asset. Render only approved entries with real src values. Keep source notes and draft records out of public UI.",
+  "assets": [
+    {"id": "pmp-logo", "status": "missing", "src": null, "expectedPath": "/brand/pmp-logo.svg", "type": "svg", "use": "Header and footer", "request": "Original approved logo in dark and light variants. Preserve the mark exactly.", "alt": "PMP", "permissionApproved": false},
+    {"id": "pmp-favicon", "status": "missing", "src": null, "expectedPath": "/brand/favicon.svg", "type": "svg", "use": "Browser icon", "request": "Approved compact logo mark and PNG or ICO fallback.", "alt": "", "permissionApproved": false},
+    {"id": "home-showreel", "status": "missing", "src": null, "expectedPath": "/media/home/pmp-showreel.mp4", "type": "video", "use": "Homepage hero only", "request": "Authentic 8 to 12 second PMP montage, silent, seamless loop; desktop and mobile variants.", "alt": "", "permissionApproved": false},
+    {"id": "home-poster", "status": "missing", "src": null, "expectedPath": "/media/home/pmp-showreel-poster.webp", "type": "image", "use": "Hero loading and reduced-motion fallback", "request": "Approved montage still with safe negative space behind headline.", "alt": "", "permissionApproved": false},
+    {"id": "service-production", "status": "missing", "src": null, "expectedPath": "/media/services/production.webp", "type": "image", "use": "Production page cover", "request": "Real PMP shoot or production still, 16:9 crop. Supply additional podcast and book examples where approved.", "alt": null, "permissionApproved": false},
+    {"id": "service-branding", "status": "missing", "src": null, "expectedPath": "/media/services/branding.webp", "type": "image", "use": "Branding page cover", "request": "Approved identity system showing logo, color, typography, and actual applications.", "alt": null, "permissionApproved": false},
+    {"id": "service-media-coverage", "status": "missing", "src": null, "expectedPath": "/media/services/media-coverage.webp", "type": "image", "use": "Media coverage page cover", "request": "Real PMP press event, interview, launch, or on-site coverage; no third-party reference screenshot.", "alt": null, "permissionApproved": false},
+    {"id": "service-social-media", "status": "missing", "src": null, "expectedPath": "/media/services/social-media.webp", "type": "image", "use": "Social media page cover and optional reel", "request": "Approved platform content with a still cover; optional 9:16 edit showing consecutive real posts.", "alt": null, "permissionApproved": false},
+    {"id": "service-media-buying", "status": "missing", "src": null, "expectedPath": "/media/services/media-buying.webp", "type": "image", "use": "Media buying page cover", "request": "Approved campaign creative. Remove private dashboard data and unapproved numbers.", "alt": null, "permissionApproved": false},
+    {"id": "service-seo-web-development", "status": "missing", "src": null, "expectedPath": "/media/services/seo-web-development.webp", "type": "image", "use": "SEO and web development cover", "request": "Approved website screenshots or device presentation from PMP work, with sensitive information removed.", "alt": null, "permissionApproved": false},
+    {"id": "founder-portrait", "status": "missing", "src": null, "expectedPath": "/media/about/mohamed-el-masry.webp", "type": "image", "use": "Founder block", "request": "Approved high-resolution portrait and permission.", "alt": "Mohamed El Masry, CEO and Founder of PMP", "permissionApproved": false},
+    {"id": "team-image", "status": "missing", "src": null, "expectedPath": "/media/about/pmp-team.webp", "type": "image", "use": "Optional About teaser", "request": "Authentic PMP team or behind-the-scenes photo. Write alt text after inspecting the selected image.", "alt": null, "permissionApproved": false},
+    {"id": "og-default", "status": "missing", "src": null, "expectedPath": "/brand/og-default.jpg", "type": "image", "use": "Default link preview", "request": "Approved 1200 by 630px brand composition, legible at thumbnail size.", "alt": "PMP integrated marketing agency", "permissionApproved": false}
+  ],
+  "projectCandidates": [
+    {"id": "kavra", "suggestedSlug": "kavra-brand-identity", "status": "draft", "ownerApproved": false, "serviceIds": ["branding"], "reference": "Supplied PDF page 20", "requestedAssets": ["Identity system", "Menu", "Packaging", "Takeaway bag", "Social applications", "Restaurant signage or real context"], "requestedCopy": ["Approved project title", "Client permission", "Challenge", "PMP scope", "Approach", "Actual deliverables", "Any evidenced results"], "results": []}
+  ],
+  "additionalRequests": [
+    "At least three approved featured projects with cover images and usable case study details",
+    "Approved client logo list with original SVG or transparent PNG files",
+    "Licensed font files or approval of proposed typefaces",
+    "Verified official social profile URLs",
+    "Exact office map URL if Get Directions should appear",
+    "Approved captions or transcripts for content-bearing videos"
+  ]
+}
