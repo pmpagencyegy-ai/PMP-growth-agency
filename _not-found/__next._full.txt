@@ -1,0 +1,22 @@
+1:"$Sreact.fragment"
+2:I[770,[],""]
+3:I[512,[],""]
+4:"static/chunks/542-deab1d5e778d832d.js"
+5:"static/chunks/app/not-found-ed8eefa8ec369ea6.js"
+6:I[3415,["542","$4","345","$5"],""]
+a:I[1339,[],"OutletBoundary"]
+b:"$Sreact.suspense"
+d:"ViewportBoundary"
+e:I[1339,[],"$d"]
+10:"MetadataBoundary"
+11:I[1339,[],"$10"]
+13:I[6858,[],"default",1]
+:HL["/PMP-growth-agency/_next/static/css/1493d53fa6b0097c.css","style"]
+8:X
+9:[["children",{"s":"__PAGE__","h":512,"d":{"r":["$","$1","c",{"children":[["$","main",null,{"className":"not-found","children":[["$","$L6",null,{"href":"/en","className":"wordmark","children":"PMP."}],["$","span",null,{"className":"eyebrow","children":"404 / A different direction"}],["$","h1",null,{"children":"This page has moved or doesn't exist."}],["$","p",null,{"children":"Explore our work or start a conversation with the PMP team."}],["$","$L6",null,{"className":"button light","href":"/en","children":["Back to Home",["$","span",null,{"aria-hidden":"true","children":["$","span",null,{"className":"arrow-icon","aria-hidden":"true","children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"none","children":["$","path",null,{"d":"M5 19 19 5M5 5h14v14","stroke":"currentColor","strokeWidth":"1.35"}]}]}]}]]}]]}],null,["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],"p":false,"v":null}}]]
+7:[["children",{"s":"_not-found","h":512,"d":{"r":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],"p":false,"v":"$8"},"c":"$Q9"}]]
+0:{"P":null,"c":["","_not-found",""],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/PMP-growth-agency/_next/static/css/1493d53fa6b0097c.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","dir":"ltr","children":["$","body",null,{"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","main",null,{"className":"not-found","children":[["$","$L6",null,{"href":"/en","className":"wordmark","children":"PMP."}],["$","span",null,{"className":"eyebrow","children":"404 / A different direction"}],["$","h1",null,{"children":"This page has moved or doesn't exist."}],["$","p",null,{"children":"Explore our work or start a conversation with the PMP team."}],["$","$L6",null,{"className":"button light","href":"/en","children":["Back to Home",["$","span",null,{"aria-hidden":"true","children":["$","span",null,{"className":"arrow-icon","aria-hidden":"true","children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"none","children":["$","path",null,{"d":"M5 19 19 5M5 5h14v14","stroke":"currentColor","strokeWidth":"1.35"}]}]}]}]]}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],"p":false,"v":null},"c":"$Q7"},"h":{"r":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$Le",null,{"children":"$Lf"}],["$","$L11",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$b",null,{"name":"Next.Metadata","children":"$L12"}]}],null]}],null]}],"p":false,"v":null}},"m":"$undefined","G":["$13",[]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"8BicuYQH9faPtrOm1EAC8"}
+8:C
+f:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+c:null
+12:[["$","title","0",{"children":"PMP — Your growth is our pulse."}],["$","meta","1",{"name":"description","content":"Strategy, creativity, production, and media. An integrated marketing agency in Egypt."}],["$","meta","2",{"name":"robots","content":"noindex, nofollow"}]]

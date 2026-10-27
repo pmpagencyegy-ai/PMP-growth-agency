@@ -1,0 +1,33 @@
+1:"$Sreact.fragment"
+2:I[770,[],""]
+3:I[512,[],""]
+4:"static/chunks/542-deab1d5e778d832d.js"
+5:"static/chunks/145-53ef57cbdcc137d8.js"
+6:"static/chunks/app/%5Blocale%5D/%5B%5B...path%5D%5D/page-7409f67e0be22625.js"
+7:I[3415,["542","$4","145","$5","775","$6"],""]
+b:"static/chunks/app/%5Blocale%5D/layout-ea640588e4a40550.js"
+c:I[5752,["542","$4","145","$5","450","$b"],"Header"]
+12:I[1339,[],"OutletBoundary"]
+13:"$Sreact.suspense"
+16:"ViewportBoundary"
+17:I[1339,[],"$16"]
+18:"MetadataBoundary"
+19:I[1339,[],"$18"]
+:HL["/PMP-growth-agency/_next/static/css/1493d53fa6b0097c.css","style"]
+9:X
+10:X
+10:C
+11:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[[["$","section",null,{"className":"page-hero","children":["$","div",null,{"className":"container","children":[["$","div",null,{"className":"eyebrow","children":[["$","span",null,{"className":"small-dot"}],"Legal","$undefined"]}],["$","h1",null,{"children":"Privacy Notice"}],"$undefined"]}]}],["$","section",null,{"className":"section container privacy-copy","children":[["$","h2",null,{"children":"A note before you get in touch."}],["$","p",null,{"children":"The full privacy notice is awaiting approval. Online inquiry submission is disabled until the notice and delivery settings are ready."}],["$","p",null,{"children":["You can contact PMP directly at"," ",["$","a",null,{"href":"mailto:info@pmp-agency.com","children":"info@pmp-agency.com"}],"."]}]]}]],null,["$","$L12",null,{"children":["$","$13",null,{"name":"Next.MetadataOutlet","children":"$@14"}]}]]}],"p":"$@15","v":null,"s":"$9"}}]]
+e:[["children",{"s":{"n":"path","t":"oc","k":"privacy","s":[]},"h":96,"d":{"r":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"p":"$@f","v":"$10","s":"$9"},"c":"$Q11"}]]
+a:[["children",{"s":{"n":"locale","t":"d","k":"en","s":["_not-found","_global-error","robots.txt","sitemap.xml"]},"h":96,"d":{"r":["$","$1","c",{"children":[null,[["$","$Lc",null,{}],["$","main",null,{"id":"main","tabIndex":-1,"children":["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]}],["$","footer",null,{"className":"footer","children":["$","div",null,{"className":"container","children":[["$","div",null,{"className":"footer-top","children":[["$","div",null,{"children":[["$","$L7",null,{"href":"/en","className":"wordmark footer-mark","children":"PMP."}],["$","p",null,{"children":"Strategy, creativity, production, and media, working together for your brand's next move."}]]}],["$","nav",null,{"aria-label":"Footer navigation","children":[["$","$L7","Home",{"href":"/en","children":"Home"}],["$","$L7","Work",{"href":"/en/work","children":"Work"}],["$","$L7","Services",{"href":"/en/services","children":"Services"}],["$","$L7","About",{"href":"/en/about","children":"About"}],["$","$L7","Contact",{"href":"/en/contact","children":"Contact"}]]}],["$","div",null,{"className":"footer-contact","children":[["$","a",null,{"href":"mailto:info@pmp-agency.com","children":["info@pmp-agency.com",["$","span",null,{"className":"arrow-icon","aria-hidden":"true","children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"none","children":["$","path",null,{"d":"M5 19 19 5M5 5h14v14","stroke":"currentColor","strokeWidth":"1.35"}]}]}]]}],["$","a",null,{"dir":"ltr","href":"tel:+201222224695","children":"+20 122 222 4695"}],["$","span",null,{"children":"Dokki, Giza, Egypt"}]]}]]}],["$","div",null,{"className":"footer-bottom","children":[["$","span",null,{"children":"© 2026 PMP. All rights reserved."}],["$","span",null,{"className":"footer-tagline","children":"Your growth is our pulse."}],["$","$L7",null,{"href":"/en/privacy","children":["Privacy Notice",["$","span",null,{"className":"arrow-icon","aria-hidden":"true","children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"none","children":["$","path",null,{"d":"M5 19 19 5M5 5h14v14","stroke":"currentColor","strokeWidth":"1.35"}]}]}]]}]]}]]}]}]]]}],"p":"$@d","v":null,"s":"$9"},"c":"$Qe"}]]
+0:{"t":{"t":{"s":"","h":80,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/PMP-growth-agency/_next/static/css/1493d53fa6b0097c.css","precedence":"next"}]],["$","html",null,{"lang":"en","dir":"ltr","children":["$","body",null,{"children":["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}],"notFound":[["$","main",null,{"className":"not-found","children":[["$","$L7",null,{"href":"/en","className":"wordmark","children":"PMP."}],["$","span",null,{"className":"eyebrow","children":"404 / A different direction"}],["$","h1",null,{"children":"This page has moved or doesn't exist."}],["$","p",null,{"children":"Explore our work or start a conversation with the PMP team."}],["$","$L7",null,{"className":"button light","href":"/en","children":["Back to Home",["$","span",null,{"aria-hidden":"true","children":["$","span",null,{"className":"arrow-icon","aria-hidden":"true","children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"none","children":["$","path",null,{"d":"M5 19 19 5M5 5h14v14","stroke":"currentColor","strokeWidth":"1.35"}]}]}]}]]}]]}],[]]}]}]}]]}],"p":"$@8","v":null,"s":"$9"},"c":"$Qa"},"h":{"r":["$","$1","h",{"children":[null,["$","$L17",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L19",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$13",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Privacy Notice | PMP"}],["$","meta","1",{"name":"description","content":"Information about contacting PMP and the use of inquiry details."}],["$","meta","2",{"name":"robots","content":"noindex, nofollow"}],["$","meta","3",{"property":"og:title","content":"Privacy Notice | PMP"}],["$","meta","4",{"property":"og:description","content":"Information about contacting PMP and the use of inquiry details."}],["$","meta","5",{"property":"og:site_name","content":"PMP"}],["$","meta","6",{"property":"og:locale","content":"en_EG"}],["$","meta","7",{"property":"og:type","content":"website"}],["$","meta","8",{"name":"twitter:card","content":"summary"}],["$","meta","9",{"name":"twitter:title","content":"Privacy Notice | PMP"}],["$","meta","10",{"name":"twitter:description","content":"Information about contacting PMP and the use of inquiry details."}]]}]}],null]}],null]}],"p":"$@1a","v":null,"s":"$9"}},"a":"$@1b","u":"$@1c","b":"8BicuYQH9faPtrOm1EAC8"}
+14:null
+9:300
+1c:true
+9:C
+1b:0
+f:"$undefined"
+d:"$undefined"
+8:"$undefined"
+1a:"$undefined"
+15:"$undefined"
