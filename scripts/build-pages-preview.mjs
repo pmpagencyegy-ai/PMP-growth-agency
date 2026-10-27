@@ -6,7 +6,7 @@ import { execFileSync } from 'node:child_process';
 const root=process.cwd();
 const basePath='/PMP-growth-agency';
 const stage=mkdtempSync(join(tmpdir(),'pmp-pages-'));
-for(const file of ['app','components','lib','content','tsconfig.json','package.json','package-lock.json','next-env.d.ts']) cpSync(join(root,file),join(stage,file),{recursive:true});
+for(const file of ['app','components','lib','content','public','tsconfig.json','package.json','package-lock.json','next-env.d.ts']) cpSync(join(root,file),join(stage,file),{recursive:true});
 // Server endpoints and credentials never enter the static preview.
 const {rmSync}=await import('node:fs');
 rmSync(join(stage,'app/api'),{recursive:true,force:true});
