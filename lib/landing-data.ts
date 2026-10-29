@@ -4,8 +4,10 @@ export const aboutPanels = [
     tab: "ABOUT PMP",
     vertical: "ABOUT PMP",
     title: "About PMP",
+    titleWhite: "About",
+    titleAccent: "PMP",
     summary:
-      "PMP is an integrated marketing agency for businesses ready to grow with purpose. We believe every brand has the potential to become more—and we’re here to help shape what comes next.",
+      "PMP is an integrated marketing agency for businesses ready to grow with purpose.",
     image: "/media/about/about.webp",
     details: [
       "PMP is an integrated marketing agency for businesses ready to grow with purpose. We believe every brand has the potential to become more—and we’re here to help shape what comes next.",
@@ -18,6 +20,8 @@ export const aboutPanels = [
     tab: "VISION",
     vertical: "VISION",
     title: "Our Vision",
+    titleWhite: "Our",
+    titleAccent: "Vision",
     summary: "A future where ambitious brands don’t just grow—they lead.",
     image: "/media/about/vision.webp",
     details: [
@@ -30,6 +34,8 @@ export const aboutPanels = [
     tab: "MISSION",
     vertical: "MISSION",
     title: "Our Mission",
+    titleWhite: "Our",
+    titleAccent: "Mission",
     summary:
       "Helping ambitious businesses turn their next move into meaningful progress.",
     image: "/media/about/mission.webp",
@@ -43,6 +49,8 @@ export const aboutPanels = [
     tab: "CEO & FOUNDER",
     vertical: "CEO & FOUNDER",
     title: "CEO & Founder",
+    titleWhite: "CEO &",
+    titleAccent: "Founder",
     summary: "Meet Mohamed El Masry—the entrepreneur shaping PMP’s vision.",
     image: "/media/about/ceo.webp",
     details: [
@@ -55,6 +63,8 @@ export const aboutPanels = [
     tab: "WHY US",
     vertical: "WHY US",
     title: "Why PMP?",
+    titleWhite: "Why",
+    titleAccent: "PMP?",
     summary: "Because the best marketing starts by seeing the bigger picture.",
     image: "/media/about/why.webp",
     details: [

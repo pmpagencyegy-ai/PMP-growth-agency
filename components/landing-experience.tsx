@@ -25,6 +25,11 @@ import { Arrow } from "./sections";
 const clamp = (value: number, min = 0, max = 1) =>
   Math.min(max, Math.max(min, value));
 
+const smoothstep = (value: number) => {
+  const t = clamp(value);
+  return t * t * (3 - 2 * t);
+};
+
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
   useEffect(() => {
@@ -182,72 +187,21 @@ function Dialog({
 }
 
 function Hero() {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const reduced = useReducedMotion();
-  const [paused, setPaused] = useState(false);
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (reduced) {
-      video.pause();
-    }
-  }, [reduced]);
   return (
-    <section id="home" className="lp-hero" aria-labelledby="hero-heading">
+    <section id="home" className="lp-hero" aria-label="PMP showreel">
+      <h1 className="lp-visually-hidden">PMP — Platinum Marketing Pulse</h1>
       <video
-        ref={videoRef}
         className="lp-hero-video"
         autoPlay={!reduced}
         muted
         loop
         playsInline
         preload="metadata"
-        onPause={() => setPaused(true)}
-        onPlay={() => setPaused(false)}
         poster="/media/home/pmp-showreel-poster.webp"
       >
         <source src="/media/home/pmp-showreel.mp4" type="video/mp4" />
       </video>
-      <div className="lp-hero-vignette" />
-      <div className="lp-hero-copy">
-        <p className="lp-hero-kicker">STRATEGY · CREATIVITY · IMPACT</p>
-        <h1 id="hero-heading">
-          Make your
-          <br />
-          next <span>move.</span>
-        </h1>
-        <div className="lp-hero-bottom">
-          <p>
-            Integrated marketing shaped around your ambition and built to move
-            your brand forward.
-          </p>
-          <a className="lp-outline-link" href="#about">
-            Discover PMP <Arrow />
-          </a>
-        </div>
-      </div>
-      <button
-        type="button"
-        className="lp-video-toggle"
-        onClick={() => {
-          const video = videoRef.current;
-          if (!video) return;
-          if (video.paused) {
-            void video.play();
-            setPaused(false);
-          } else {
-            video.pause();
-            setPaused(true);
-          }
-        }}
-        aria-label={paused ? "Play background video" : "Pause background video"}
-      >
-        {paused ? "PLAY" : "PAUSE"}
-        <span aria-hidden="true">{paused ? "▶" : "Ⅱ"}</span>
-      </button>
-      <a className="lp-scroll-cue" href="#about">
-        Scroll to explore <span aria-hidden="true">↓</span>
-      </a>
     </section>
   );
 }
@@ -264,6 +218,10 @@ function AboutExperience() {
   return (
     <section id="about" className="lp-about lp-panel-section">
       <div className="lp-width">
+        <div className="lp-about-eyebrow">
+          <span>ABOUT THE AGENCY</span>
+          <i />
+        </div>
         <div className="lp-about-tabs" role="tablist" aria-label="About PMP">
           {aboutPanels.map((item, index) => (
             <button
@@ -279,12 +237,11 @@ function AboutExperience() {
           ))}
         </div>
         <div id="about-panel" className="lp-about-stage" role="tabpanel">
-          <div key={`${panel.id}-label`} className="lp-about-vertical">
-            {panel.vertical}
-          </div>
           <div key={`${panel.id}-copy`} className="lp-about-copy">
-            <i />
-            <h2>{panel.title}</h2>
+            <h2>
+              <span>{panel.titleWhite}</span>
+              <em>{panel.titleAccent}</em>
+            </h2>
             <p>{panel.summary}</p>
             <button type="button" className="lp-read-more" onClick={openDetails}>
               <span>Read More</span>
@@ -302,15 +259,15 @@ function AboutExperience() {
         origin={origin}
         label={`${panel.title} details`}
       >
-        <div className="lp-about-dialog-media">
-          <Image src={panel.image} alt="" fill sizes="35vw" />
-        </div>
         <div className="lp-about-dialog-copy">
-          <i />
-          <h2>{panel.title}</h2>
+          <span>ABOUT THE AGENCY</span>
+          <h2><b>{panel.titleWhite}</b> <em>{panel.titleAccent}</em></h2>
           {panel.details.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
+        </div>
+        <div className="lp-about-dialog-media">
+          <Image src={panel.image} alt="" fill sizes="45vw" />
         </div>
       </Dialog>
     </section>
@@ -376,28 +333,30 @@ function TypographyBridge() {
   const sectionRef = useRef<HTMLElement>(null);
   const progress = usePinnedProgress(sectionRef);
   const reduced = useReducedMotion();
-  const scaled = reduced ? typographyFrames.length - 1 : progress * typographyFrames.length;
   return (
     <section ref={sectionRef} className="lp-type-scroll" aria-label="PMP promise">
       <div className="lp-type-sticky">
         <div className="lp-type-glow" />
         {typographyFrames.map((frame, index) => {
-          const distance = Math.abs(scaled - (index + 0.5));
-          const opacity = reduced
-            ? index === typographyFrames.length - 1
-              ? 1
-              : 0
-            : clamp(1 - distance * 1.55);
-          const direction = index % 2 ? -1 : 1;
+          const phase = reduced
+            ? index === typographyFrames.length - 1 ? 0.5 : 0
+            : clamp(progress * typographyFrames.length - index);
+          const enter = smoothstep(phase / 0.28);
+          const leave = smoothstep((1 - phase) / 0.28);
+          const presence = reduced
+            ? index === typographyFrames.length - 1 ? 1 : 0
+            : Math.min(enter, leave);
+          const depth = (1 - presence) * -900;
+          const scale = 0.38 + presence * 0.62;
           return (
             <div
               key={frame.lines.join("-")}
               className={`lp-type-frame lp-type-frame-${index + 1}`}
               style={
                 {
-                  opacity,
-                  transform: `translate3d(${direction * distance * 8}vw, ${distance * 4}vh, ${-distance * 180}px) scale(${0.78 + opacity * 0.22})`,
-                  clipPath: `inset(${(1 - opacity) * 50}% 0 ${(1 - opacity) * 50}% 0)`,
+                  opacity: presence,
+                  transform: `translate3d(0, 0, ${depth}px) scale(${scale})`,
+                  filter: `blur(${(1 - presence) * 16}px) brightness(${0.55 + presence * 0.45})`,
                 } as CSSProperties
               }
             >

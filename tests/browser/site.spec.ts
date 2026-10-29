@@ -4,9 +4,8 @@ test("homepage, services, contact prefill and safe inquiry fallback", async ({
   page,
 }) => {
   await page.goto("/en");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "Make your",
-  );
+  await expect(page.locator("#home video")).toBeVisible();
+  await expect(page.locator("#home .lp-hero-copy")).toHaveCount(0);
   await page.getByRole("link", { name: /DESIGNS/ }).click();
   await expect(page).toHaveURL(/services\/branding/);
   await page.getByRole("link", { name: "Build Your Brand" }).first().click();
@@ -98,6 +97,30 @@ test("responsive layouts have no horizontal overflow", async ({ page }) => {
         `${path} at ${width}`,
       ).toBe(true);
     }
+  }
+});
+test("all seven typography beats become fully readable during scroll", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/en");
+  const section = page.locator(".lp-type-scroll");
+  const top = await section.evaluate((element) => element.offsetTop);
+  const distance = await section.evaluate(
+    (element) => element.scrollHeight - window.innerHeight,
+  );
+  for (let index = 0; index < 7; index += 1) {
+    await page.evaluate(
+      (y) => window.scrollTo(0, y),
+      top + distance * ((index + 0.5) / 7),
+    );
+    await page.waitForTimeout(80);
+    const frame = page.locator(`.lp-type-frame-${index + 1}`);
+    await expect(frame).toHaveCSS("opacity", "1");
+    const box = await frame.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.y).toBeGreaterThanOrEqual(0);
+    expect(box!.y + box!.height).toBeLessThanOrEqual(844);
   }
 });
 test("automated accessibility scans for representative templates", async ({

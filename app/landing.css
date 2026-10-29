@@ -17,6 +17,18 @@
   box-sizing: border-box;
 }
 
+.lp-visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 .lp-width {
   width: min(100% - clamp(32px, 6vw, 132px), 1720px);
   margin-inline: auto;
@@ -118,8 +130,7 @@
 .lp-hero {
   position: relative;
   min-height: 100svh;
-  display: grid;
-  align-items: end;
+  height: 100svh;
   isolation: isolate;
   overflow: hidden;
   background: #060608;
@@ -134,8 +145,9 @@
 }
 
 .lp-hero-video {
-  z-index: -2;
+  z-index: 0;
   object-fit: cover;
+  object-position: center;
 }
 
 .lp-hero-vignette {
@@ -387,6 +399,130 @@
   to { opacity: 1; transform: translateX(0); }
 }
 
+/* Redesigned About overview */
+.lp-about {
+  min-height: 100svh;
+  padding-top: clamp(120px, 9vw, 170px);
+  padding-bottom: clamp(65px, 6vw, 115px);
+}
+
+.lp-about-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 30px;
+  color: var(--lp-pink);
+  font-size: clamp(10px, .7vw, 14px);
+  font-weight: 820;
+  letter-spacing: .1em;
+}
+
+.lp-about-eyebrow i { width: 84px; height: 1px; background: currentColor; }
+
+.lp-about-tabs {
+  gap: clamp(22px, 2.7vw, 58px);
+  width: min(100%, 940px);
+  padding-bottom: 0;
+  overflow: visible;
+  border-bottom: 0;
+}
+
+.lp-about-tabs button {
+  position: relative;
+  min-height: 34px;
+  padding: 0 0 10px;
+  border: 0;
+  border-radius: 0;
+  color: rgba(255,255,255,.78);
+  background: transparent;
+  font-size: clamp(10px, .72vw, 14px);
+  white-space: nowrap;
+  transition: color 220ms ease;
+}
+
+.lp-about-tabs button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--lp-pink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 260ms cubic-bezier(.16,1,.3,1);
+}
+
+.lp-about-tabs button[aria-selected="true"],
+.lp-about-tabs button:hover {
+  color: var(--lp-hot);
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+.lp-about-tabs button[aria-selected="true"]::after,
+.lp-about-tabs button:hover::after { transform: scaleX(1); }
+
+.lp-about-stage {
+  min-height: clamp(540px, 42vw, 760px);
+  grid-template-columns: minmax(330px, .82fr) minmax(520px, 1.18fr);
+  gap: clamp(35px, 4vw, 90px);
+  margin-top: 10px;
+}
+
+.lp-about-copy {
+  max-width: 760px;
+  padding: 20px 0;
+  animation: lp-about-copy-in 520ms cubic-bezier(.16,1,.3,1) both;
+}
+
+.lp-about-copy h2 {
+  color: #fff;
+  font-size: clamp(72px, 7.4vw, 142px);
+  font-weight: 880;
+  line-height: .86;
+  letter-spacing: -.045em;
+}
+
+.lp-about-copy h2 span,
+.lp-about-copy h2 em { display: block; }
+.lp-about-copy h2 em { color: var(--lp-pink); font-style: normal; }
+
+.lp-about-copy p {
+  max-width: 660px;
+  margin-top: 38px;
+  color: #eee5e9;
+  font-size: clamp(17px, 1.15vw, 23px);
+  line-height: 1.25;
+}
+
+.lp-read-more {
+  min-width: 185px;
+  min-height: 48px;
+  margin-top: 52px;
+  padding: 8px 18px;
+  border-width: 1px;
+}
+
+.lp-about-image {
+  min-height: clamp(520px, 40vw, 740px);
+  mask-image: none;
+  animation: lp-about-image-in 560ms cubic-bezier(.16,1,.3,1) both;
+}
+
+.lp-about-image img { object-fit: contain; }
+
+@keyframes lp-about-image-in {
+  from { opacity: 0; transform: translateX(10%) scale(.98); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes lp-about-copy-in {
+  from { opacity: 0; transform: translateX(-34px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
 /* Shared dialog */
 .lp-dialog-backdrop {
   position: fixed;
@@ -472,6 +608,36 @@
   font-size: clamp(16px, 1.2vw, 22px);
   line-height: 1.35;
 }
+
+.lp-about .lp-dialog {
+  width: min(1500px, 94vw);
+  grid-template-columns: minmax(360px, .85fr) minmax(520px, 1.15fr);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(111,13,42,.35), transparent 48%),
+    rgba(8,6,8,.96);
+}
+
+.lp-about-dialog-copy > span {
+  color: var(--lp-pink);
+  font-size: 11px;
+  font-weight: 820;
+  letter-spacing: .12em;
+}
+
+.lp-about-dialog-copy h2 {
+  margin-top: 24px;
+  font-size: clamp(54px, 5vw, 92px);
+  font-weight: 870;
+  line-height: .9;
+}
+
+.lp-about-dialog-copy h2 b,
+.lp-about-dialog-copy h2 em { display: block; }
+.lp-about-dialog-copy h2 em { color: var(--lp-pink); font-style: normal; }
+
+.lp-about-dialog-media { min-height: 620px; border-radius: 0; }
+.lp-about-dialog-media img { object-fit: contain; }
 
 /* Services */
 .lp-services {
@@ -622,7 +788,7 @@
 /* Typography bridge */
 .lp-type-scroll {
   position: relative;
-  height: 700svh;
+  height: 840svh;
 }
 
 .lp-type-sticky {
@@ -632,7 +798,8 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-  perspective: 1200px;
+  perspective: 1100px;
+  transform-style: preserve-3d;
 }
 
 .lp-type-glow {
@@ -646,9 +813,12 @@
 
 .lp-type-frame {
   position: absolute;
-  width: min(1500px, 90vw);
+  width: min(1600px, calc(100vw - 48px));
+  padding: 4vw;
   text-align: center;
-  will-change: transform, opacity, clip-path;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity, filter;
 }
 
 .lp-type-frame p {
@@ -861,9 +1031,9 @@
 .lp-client-cta:hover { transform: translateY(-4px); box-shadow: 0 0 35px rgba(228, 35, 92, 0.42); }
 
 @media (max-width: 1180px) {
-  .lp-about-stage { grid-template-columns: 58px 0.9fr 1.1fr; }
+  .lp-about-stage { grid-template-columns: minmax(300px, .82fr) minmax(430px, 1.18fr); gap: 28px; }
   .lp-about-tabs { overflow-x: auto; }
-  .lp-about-tabs button { flex-shrink: 0; padding-inline: 18px; }
+  .lp-about-tabs button { flex-shrink: 0; padding-inline: 0; }
   .lp-service-deck { gap: 10px; }
   .lp-service-card-body { padding-inline: 18px; }
   .lp-service-card-body p { font-size: 14px; }
@@ -884,17 +1054,19 @@
   .lp-hero-bottom { align-items: start; flex-direction: column; }
   .lp-video-toggle { right: 16px; }
   .lp-scroll-cue { left: 10px; }
-  .lp-about-tabs { margin-bottom: 30px; }
-  .lp-about-stage { min-height: auto; grid-template-columns: 34px 1fr; margin-top: 0; }
-  .lp-about-vertical { grid-row: 1/3; font-size: 28px; }
-  .lp-about-copy { grid-column: 2; padding: 20px 0; }
-  .lp-about-copy h2 { font-size: 44px; }
+  .lp-about { padding-top: 120px; padding-bottom: 65px; }
+  .lp-about-eyebrow { margin-bottom: 20px; }
+  .lp-about-tabs { margin-bottom: 22px; gap: 24px; }
+  .lp-about-stage { min-height: auto; grid-template-columns: 1fr; gap: 14px; margin-top: 0; }
+  .lp-about-copy { grid-column: auto; padding: 24px 0 8px; }
+  .lp-about-copy h2 { font-size: clamp(62px, 18vw, 92px); }
   .lp-about-copy p { font-size: 17px; }
   .lp-read-more { margin-top: 30px; }
-  .lp-about-image { grid-column: 2; min-height: 360px; mask-image: linear-gradient(180deg, #000 70%, transparent); }
+  .lp-about-image { grid-column: auto; min-height: min(72vw, 520px); mask-image: none; }
   .lp-dialog { grid-template-columns: 1fr; max-height: 92vh; }
   .lp-about-dialog-media { min-height: 260px; }
   .lp-about-dialog-copy { padding: 30px 24px; }
+  .lp-about .lp-dialog { grid-template-columns: 1fr; }
   .lp-services { min-height: auto; }
   .lp-services-heading { align-items: start; flex-direction: column; }
   .lp-services-promise { white-space: normal; }
@@ -904,7 +1076,7 @@
   .lp-service-card:nth-child(3),
   .lp-service-card:nth-child(4) { min-height: 520px; margin-top: 0; transform: none; opacity: 1; }
   .lp-service-deck:hover .lp-service-card:not(:hover) { transform: none; }
-  .lp-type-scroll { height: 480svh; }
+  .lp-type-scroll { height: 770svh; }
   .lp-type-frame p { font-size: clamp(42px, 15vw, 78px); }
   .lp-type-frame-3 p,
   .lp-type-frame-6 p,
@@ -938,8 +1110,8 @@
   .lp-width { width: min(100% - 28px, 1720px); }
   .lp-outline-link { gap: 22px; padding-inline: 18px; }
   .lp-about-tabs { width: calc(100vw - 28px); }
-  .lp-about-tabs button { min-height: 44px; padding-inline: 14px; font-size: 9px; }
-  .lp-about-stage { grid-template-columns: 28px 1fr; }
+  .lp-about-tabs button { min-height: 36px; padding-inline: 0; font-size: 9px; }
+  .lp-about-stage { grid-template-columns: 1fr; }
   .lp-service-card { min-height: 485px; }
   .lp-section-title h2 { font-size: 48px; }
   .lp-industry-grid { grid-template-columns: 1fr; }
