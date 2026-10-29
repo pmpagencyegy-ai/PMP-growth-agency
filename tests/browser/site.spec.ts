@@ -7,7 +7,7 @@ test("homepage, services, contact prefill and safe inquiry fallback", async ({
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "Make your",
   );
-  await page.getByRole("link", { name: "02 Branding" }).click();
+  await page.getByRole("link", { name: /DESIGNS/ }).click();
   await expect(page).toHaveURL(/services\/branding/);
   await page.getByRole("link", { name: "Build Your Brand" }).first().click();
   await expect(page).toHaveURL(/contact\?service=branding#inquiry/);
@@ -71,7 +71,7 @@ test("all templates and invalid routes return correct statuses", async ({
 test("mobile menu handles Escape and focus return", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/en");
-  const menu = page.getByRole("button", { name: "Open menu" });
+  const menu = page.locator(".pmp-menu-toggle");
   await menu.click();
   await expect(
     page.getByRole("navigation", { name: "Mobile navigation" }),
@@ -83,7 +83,8 @@ test("mobile menu handles Escape and focus return", async ({ page }) => {
     .getByRole("navigation", { name: "Mobile navigation" })
     .getByRole("link", { name: "Services" })
     .click();
-  await expect(page).toHaveURL(/\/services$/);
+  await expect(page).toHaveURL(/\/en#services$/);
+  await expect(page.locator("#services")).toBeInViewport();
 });
 test("responsive layouts have no horizontal overflow", async ({ page }) => {
   for (const width of [320, 360, 390, 768, 1024, 1440]) {
@@ -122,7 +123,9 @@ test("automated accessibility scans for representative templates", async ({
 test("API rejects invalid content and never simulates successful delivery", async ({
   request,
 }) => {
-  const headers = { origin: "http://127.0.0.1:3000" };
+  const headers = {
+    origin: process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:3000",
+  };
   expect(
     (
       await request.post("/api/inquiries", {

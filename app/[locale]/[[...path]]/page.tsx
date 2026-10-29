@@ -9,8 +9,10 @@ import {
   Services,
   ServicePage,
   WorkPage,
+  ProjectPreview,
 } from "@/components/pages";
 import { CaseStudy } from "@/components/sections";
+import { landingProjects } from "@/lib/landing-data";
 type Params = { locale: string; path?: string[] };
 function resolve(p: Params) {
   if (!validLocale(p.locale)) return;
@@ -40,6 +42,16 @@ function resolve(p: Params) {
       return {
         view: <CaseStudy project={project} />,
         seo: { title: `${project.title} | PMP`, description: project.summary },
+      };
+    const previewProject = landingProjects.find((x) => x.id === p.path![1]);
+    if (previewProject)
+      return {
+        view: <ProjectPreview project={previewProject} />,
+        seo: {
+          title: `${previewProject.title} | PMP`,
+          description: `${previewProject.category} project preview by PMP.`,
+          robots: { index: false, follow: false },
+        },
       };
   }
 }

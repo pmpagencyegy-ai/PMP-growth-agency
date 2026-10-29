@@ -88,47 +88,68 @@ export function Process() {
 }
 export function Footer() {
   const d = c.contactPage.details;
+  const social = [
+    ["Instagram", "/media/social/social-01.png"],
+    ["Facebook", "/media/social/social-02.png"],
+    ["LinkedIn", "/media/social/social-03.png"],
+    ["Twitter", "/media/social/social-04.png"],
+    ["TikTok", "/media/social/social-05.png"],
+    ["Snapchat", "/media/social/social-06.png"],
+    ["YouTube", "/media/social/social-07.png"],
+    ["Threads", "/media/social/social-08.png"],
+  ];
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="footer-top">
-          <div>
-            <Link href="/en" className="wordmark footer-mark">
-              PMP.
-            </Link>
-            <p>{c.brand.footerDescription}</p>
-          </div>
-          <nav aria-label="Footer navigation">
-            {c.navigation.map((n) => (
-              <Link key={n.label} href={href(n.route)}>
-                {n.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="footer-contact">
-            <a href={d.emailHref}>
-              {d.email}
-              <Arrow />
-            </a>
-            <a dir="ltr" href={d.phoneHref}>
-              {d.phoneDisplay}
-            </a>
-            <span>{d.location}</span>
-          </div>
+    <footer className="pmp-footer" id="contact">
+      <div className="pmp-footer-social">
+        <p>FOLLOW THE PULSE <span aria-hidden="true" /></p>
+        <div>
+          {social.map(([label, image], index) => (
+            <span className="pmp-social-item" key={label}>
+              <Image src={image} width={44} height={44} alt="" />
+              {label}{index < social.length - 1 && <i aria-hidden="true">•</i>}
+            </span>
+          ))}
         </div>
-        <div className="footer-bottom">
-          <span>
-            {c.shared.copyrightTemplate.replace(
-              "{year}",
-              String(new Date().getFullYear()),
-            )}
-          </span>
-          <span className="footer-tagline">{c.brand.tagline}</span>
-          <Link href="/en/privacy">
-            {c.shared.privacyLabel}
-            <Arrow />
+      </div>
+      <div className="pmp-footer-grid">
+        <div className="pmp-footer-brand">
+          <Link href="/en#home" aria-label="PMP home">
+            <Image src="/brand/pmp-logo.svg" alt="PMP — Platinum Marketing Pulse" width={430} height={145} />
           </Link>
+          <p>Distinctive identity. Sharp strategy.<br />Creativity built to make an impact.</p>
         </div>
+        <nav className="pmp-footer-nav" aria-label="Explore">
+          <h2>EXPLORE <span /></h2>
+          <div>
+            <Link href="/en#home">Home</Link>
+            <Link href="/en#about">About Us</Link>
+            <Link href="/en#services">Services</Link>
+            <Link href="/en#work">Our Work</Link>
+            <Link href="/en#industries">Industries</Link>
+            <Link href="/en#contact">Contact</Link>
+          </div>
+        </nav>
+        <nav className="pmp-footer-services" aria-label="Our services">
+          <h2>OUR SERVICES <span /></h2>
+          <Link href="/en/services/production">Production</Link>
+          <Link href="/en/services/branding">Design</Link>
+          <Link href="/en/services/media-coverage">Media Coverage</Link>
+          <Link href="/en/services/social-media">Social Media</Link>
+          <Link href="/en/services/media-buying">Media Buying</Link>
+        </nav>
+        <div className="pmp-footer-contact">
+          <h2>Good conversations. Great possibilities.</h2>
+          <p>EMAIL US</p>
+          <a href={d.emailHref}>{d.email}<span aria-hidden="true">→</span></a>
+          <p>CALL US</p>
+          <a dir="ltr" href={d.phoneHref}>{d.phoneDisplay}<span aria-hidden="true">→</span></a>
+          <small>Also available on WhatsApp.</small>
+        </div>
+      </div>
+      <div className="pmp-footer-bottom">
+        <span>© {new Date().getFullYear()} PMP. All rights reserved.</span>
+        <div><Link href="/en/privacy">Privacy Policy</Link><i>•</i><span>Terms of Use</span></div>
+        <a href="#home" className="pmp-back-top" aria-label="Back to top"><b>↑</b> Back to top</a>
       </div>
     </footer>
   );

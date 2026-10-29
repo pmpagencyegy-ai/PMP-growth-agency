@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Suspense } from "react";
 import { c, href, projects, type Service } from "@/lib/content";
 import { inquiryReady } from "@/lib/inquiries";
@@ -13,7 +14,14 @@ import {
 } from "./sections";
 import { Work } from "./work";
 import { InquiryForm } from "./inquiry-form";
+import { LandingExperience } from "./landing-experience";
+import type { LandingProject } from "@/lib/landing-data";
+
 export function Home() {
+  return <LandingExperience />;
+}
+
+export function LegacyHome() {
   return (
     <>
       <section className="hero">
@@ -149,6 +157,27 @@ export function Home() {
       <Process />
       <Closing />
     </>
+  );
+}
+
+export function ProjectPreview({ project }: { project: LandingProject }) {
+  return (
+    <section className="project-preview">
+      <div className="project-preview-media">
+        <Image src={project.image} alt="" fill sizes="92vw" priority />
+      </div>
+      <div className="container project-preview-copy">
+        <p className="eyebrow">Selected project · {project.number}</p>
+        <h1>{project.title}</h1>
+        <p>{project.category}</p>
+        <p className="project-preview-note">
+          The complete case study is being prepared for the next project phase.
+        </p>
+        <Link className="button light" href="/en#work">
+          Back to our work <Arrow />
+        </Link>
+      </div>
+    </section>
   );
 }
 export function Services() {

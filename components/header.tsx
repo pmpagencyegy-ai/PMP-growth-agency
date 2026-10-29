@@ -1,101 +1,136 @@
 "use client";
-import { Arrow } from "./sections";
+
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef, useState } from "react";
-import { c, href } from "@/lib/content";
+import { useEffect, useRef, useState } from "react";
+
+const links = [
+  ["Home", "home"],
+  ["About", "about"],
+  ["Services", "services"],
+  ["Our Work", "work"],
+  ["Industries", "industries"],
+  ["Contact", "contact"],
+] as const;
+
 export function Header() {
-  const path = usePathname();
+  const pathname = usePathname();
+  const onHome = pathname === "/en" || pathname === "/en/";
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [active, setActive] = useState("home");
+  const lastScroll = useRef(0);
   const trigger = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLElement>(null);
-  function close() {
-    setOpen(false);
-    trigger.current?.focus();
+
+  useEffect(() => {
+    const onScroll = () => {
+      const next = window.scrollY;
+      const delta = next - lastScroll.current;
+      if (next < 80) setHidden(false);
+      else if (Math.abs(delta) > 5) setHidden(delta > 0);
+      lastScroll.current = next;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!onHome) return;
+    const sections = links
+      .map(([, id]) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: "-35% 0px -55%", threshold: [0, 0.15, 0.5] },
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [onHome]);
+
+  useEffect(() => {
+    document.body.classList.toggle("menu-is-open", open);
+    if (open) {
+      window.setTimeout(
+        () => panel.current?.querySelector<HTMLElement>("button,a")?.focus(),
+        0,
+      );
+    }
+    return () => document.body.classList.remove("menu-is-open");
+  }, [open]);
+
+  function target(id: string) {
+    return onHome ? `#${id}` : `/en#${id}`;
   }
+
+  function close(restoreFocus = false) {
+    setOpen(false);
+    if (restoreFocus) trigger.current?.focus();
+  }
+
   return (
     <>
-      <a className="skip" href="#main">
-        {c.shared.skipLink}
-      </a>
-      <header className="header">
-        <div className="container header-inner">
-          <Link href="/en" className="wordmark" aria-label="PMP home">
-            PMP<span className="wordmark-dot">.</span>
+      <a className="skip" href="#main">Skip to content</a>
+      <header className={`pmp-header ${hidden && !open ? "is-hidden" : ""}`}>
+        <div className="pmp-nav-shell">
+          <Link className="pmp-nav-logo" href={target("home")} aria-label="PMP home">
+            <Image src="/brand/pmp-logo.svg" alt="PMP — Platinum Marketing Pulse" width={340} height={120} priority />
           </Link>
-          <nav aria-label="Main navigation" className="desktop-nav">
-            {c.navigation.map((n) => (
-              <Link
-                aria-current={path === href(n.route) ? "page" : undefined}
-                key={n.label}
-                href={href(n.route)}
-              >
-                {n.label}
+          <nav className="pmp-desktop-nav" aria-label="Main navigation">
+            {links.slice(0, -1).map(([label, id]) => (
+              <Link key={id} href={target(id)} className={active === id ? "is-active" : ""}>
+                {label}
               </Link>
             ))}
           </nav>
-          <Link className="header-cta" href={href(c.primaryCta.route)}>
-            {c.primaryCta.label}
-            <span aria-hidden="true">
-              <Arrow />
-            </span>
+          <Link className="pmp-nav-cta" href={target("contact")}>
+            Let&apos;s Talk <span aria-hidden="true">→</span>
           </Link>
           <button
             ref={trigger}
-            className="menu-toggle"
+            className="pmp-menu-toggle"
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? c.shared.menuClose : c.shared.menuOpen}
-            onClick={() => {
-              setOpen(!open);
-              if (!open)
-                setTimeout(
-                  () =>
-                    panel.current
-                      ?.querySelector<HTMLAnchorElement>("a")
-                      ?.focus(),
-                  0,
-                );
-            }}
+            aria-controls="pmp-mobile-menu"
+            onClick={() => setOpen((value) => !value)}
           >
-            {" "}
-            {open ? "Close −" : "Menu +"}{" "}
+            <span /><span /><span />
           </button>
         </div>
       </header>
       {open && (
         <nav
           ref={panel}
-          id="mobile-nav"
-          className="mobile-nav"
+          id="pmp-mobile-menu"
+          className="pmp-mobile-menu"
           aria-label="Mobile navigation"
-          onKeyDown={(e) => {
-            if (e.key === "Escape") close();
-            if (e.key === "Tab") {
-              const links = panel.current?.querySelectorAll("a");
-              if (!links) return;
-              const first = links[0],
-                last = links[links.length - 1];
-              if (e.shiftKey && document.activeElement === first) {
-                e.preventDefault();
-                last.focus();
-              } else if (!e.shiftKey && document.activeElement === last) {
-                e.preventDefault();
-                first.focus();
-              }
+          onKeyDown={(event) => {
+            if (event.key === "Escape") close(true);
+            if (event.key !== "Tab") return;
+            const focusable = panel.current?.querySelectorAll<HTMLElement>("a,button");
+            if (!focusable?.length) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+              event.preventDefault();
+              last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+              event.preventDefault();
+              first.focus();
             }
           }}
         >
-          <button className="mobile-close" onClick={close}>
-            {c.shared.menuClose} ×
-          </button>
-          {c.navigation.map((n, i) => (
-            <Link key={n.label} href={href(n.route)} onClick={close}>
-              <span>0{i + 1}</span>
-              {n.label}
-              <span>
-                <Arrow />
-              </span>
+          <button type="button" onClick={() => close(true)} aria-label="Close menu">Close ×</button>
+          {links.map(([label, id], index) => (
+            <Link key={id} href={target(id)} onClick={() => close()}>
+              <span>0{index + 1}</span>{label}<span aria-hidden="true">↗</span>
             </Link>
           ))}
         </nav>
